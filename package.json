@@ -1,0 +1,12 @@
+{
+  "name": "patternSketcherReact",
+  "version": "1.0.0",
+  "description": "React Front End for Pattern Sketcher App (Flatiron School Web Dev Fellowship Project)",
+  "main": "index.js",
+  "repository": "git@github.com:satub/patternSketcherReact.git",
+  "author": "Satu Barnhill",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+    }
+}
