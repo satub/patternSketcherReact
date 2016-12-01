@@ -2,7 +2,6 @@
   "name": "pattern-sketcher-react",
   "version": "1.0.0",
   "description": "React Front End for Pattern Sketcher App (Flatiron School Web Dev Fellowship Project)",
-  "main": "index.js",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "prod": "NODE_ENV=production node server.js",
@@ -27,5 +26,8 @@
   "bugs": {
     "url": "https://github.com/satub/patternSketcherReact/issues"
   },
-  "homepage": "https://github.com/satub/patternSketcherReact#readme"
+  "homepage": "https://github.com/satub/patternSketcherReact#readme",
+  "devDependencies": {
+    "webpack-dev-server": "^1.16.2"
+  }
 }
