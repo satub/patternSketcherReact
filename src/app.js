@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Pattern from './components/pattern';
+import PatternList from './components/patternList';
 
 export default class App extends React.Component {
   constructor(props){
@@ -19,7 +20,7 @@ export default class App extends React.Component {
   render(){
     return (
       <div id="pattern">
-      My first div!
+      <PatternList patterns={[{name: 'pearl knit'}]} />
       <Pattern loops={[{name: 'knit'}, {name: 'purl'}, {name: 'knit'}, {name: 'purl'}]} reverse={this.reverseIt}/>
       </div>
     )
