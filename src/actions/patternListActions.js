@@ -6,7 +6,7 @@ export function getPatternList(){
     return res.json();
   }).then(function(json){
     return {
-      type: 'GET_PATTERN_LIST', payload: json
+      type: 'GET_PATTERN_LIST', payload: json.patterns
     }
   });
 }
