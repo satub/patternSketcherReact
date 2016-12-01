@@ -11,7 +11,8 @@ export default class App extends React.Component {
   reverseIt(ev){
     ev.preventDefault();
     let that = ev;
-    let loopNumber = that.target.attributes[1].value.split("$")[1]);
+    let loopNumber = that.target.attributes[1].value.split("$")[1];
+    console.log(loopNumber);
     //dispatch an action with this id and reverse the stitch
   }
 
