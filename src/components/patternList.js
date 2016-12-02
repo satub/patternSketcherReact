@@ -1,12 +1,11 @@
 import React from 'react';
 
 export default function PatternList(props){
-  debugger;
   return(
     <div id="patternList">
       <ul>
-        {props.patterns.map((pattern, i) =>
-        <li key={i}>{pattern.name}</li>)}
+        {props.patterns.map((pattern) =>
+        <li key={pattern.id}>{pattern.id}. {pattern.name}</li>)}
       </ul>
     </div>
   )
