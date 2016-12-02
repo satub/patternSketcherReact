@@ -9,11 +9,16 @@ export function getPatternList(){
     }
 }
 
-
 export function addToPatternList(){
   console.log('Run after save and add the newest pattern to the browser, do not refetch them all?');
 }
 
 export function getPattern(){
   return { type: 'GET_PATTERN' }
+}
+
+export function choosePattern(state, patternId){
+  return {
+    type: 'CHOOSE_PATTERN', payload: { activePattern: state.patterns[patternId] }
+  }
 }

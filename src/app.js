@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Pattern from './components/pattern';
 import PatternList from './components/patternList';
 
-import { getPattern } from './actions/patternActions';
+import { getPattern, choosePattern } from './actions/patternActions';
 
 class App extends React.Component {
   constructor(props){
@@ -20,7 +20,9 @@ class App extends React.Component {
 
   choose(ev){
     ev.preventDefault();
-    debugger;
+    let that = ev;
+    let id = that.target.parentElement.attributes[0].value.split("$")[1];
+    this.props.choosePattern(this.props.pattern, id);
   }
 
   reverseIt(ev){
@@ -44,7 +46,8 @@ function mapStateToProps(state) {
   return { pattern: state.pattern }
 }
 function mapDispatchToProps(dispatch){
-  return { getPattern: ()=>(dispatch(getPattern()))};
+  return { getPattern: ()=>(dispatch(getPattern())),
+          choosePattern: (all, id)=>(dispatch(choosePattern(all, id)))};
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

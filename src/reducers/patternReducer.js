@@ -11,12 +11,18 @@ const initialState = { patterns: [],
   }
 }
 export default function patternReducer(state = initialState, action) {
+  let newState;
   switch(action.type) {
     case 'GET_PATTERN':
       return state;
     case 'GET_PATTERN_LIST':
-      let newState = JSON.parse(JSON.stringify(state));
-      newState.patterns = action.payload.patterns
+      newState = JSON.parse(JSON.stringify(state));
+      newState.patterns = action.payload.patterns;
+      return newState;
+    case 'CHOOSE_PATTERN':
+      console.log(action.payload)
+      newState = JSON.parse(JSON.stringify(state));
+      newState.activePattern.pattern = action.payload.activePattern;
       return newState;
     default:
       return state;
