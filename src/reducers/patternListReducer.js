@@ -1,4 +1,4 @@
-export default function patternListReducer(state = [], action) {
+export default function patternReducer(state = [], action) {
   switch(action.type) {
     case 'GET_PATTERN_LIST':
       return action.payload.patterns;

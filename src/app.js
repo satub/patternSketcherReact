@@ -11,6 +11,7 @@ class App extends React.Component {
     super(props);
     this.reverseIt = this.reverseIt.bind(this);
     this.choose = this.choose.bind(this);
+    console.log(props)
   }
 
   componentWillMount(){
@@ -33,14 +34,14 @@ class App extends React.Component {
   render(){
     return (
       <div id="pattern">
-      <PatternList patterns={this.props.patternList} zoom={this.choose}/>
-      <Pattern loops={this.props.pattern.pattern.stitches} reverse={this.reverseIt}/>
+      <PatternList patternList={this.props.pattern} zoom={this.choose}/>
+      <Pattern loops={this.props.pattern.activePattern.pattern.stitches} reverse={this.reverseIt}/>
       </div>
     )
   }
 }
 function mapStateToProps(state) {
-  return { patternList: state.patternList, pattern: state.pattern }
+  return { pattern: state.pattern }
 }
 function mapDispatchToProps(dispatch){
   return { getPattern: ()=>(dispatch(getPattern()))};
