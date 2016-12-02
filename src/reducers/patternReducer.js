@@ -11,7 +11,7 @@ const initialPatternState = { pattern:
 export default function patternReducer(state = initialPatternState, action) {
   switch(action.type) {
     case 'GET_PATTERN':
-      return action.payload.pattern;
+      return state;
     default:
     return state;
   }

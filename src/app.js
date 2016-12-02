@@ -4,10 +4,22 @@ import {connect} from 'react-redux';
 import Pattern from './components/pattern';
 import PatternList from './components/patternList';
 
+import { getPattern } from './actions/patternActions';
+
 class App extends React.Component {
   constructor(props){
     super(props);
     this.reverseIt = this.reverseIt.bind(this);
+    this.choose = this.choose.bind(this);
+  }
+
+  componentWillMount(){
+    this.props.getPattern();
+  }
+
+  choose(ev){
+    ev.preventDefault();
+    debugger;
   }
 
   reverseIt(ev){
@@ -21,16 +33,20 @@ class App extends React.Component {
   render(){
     return (
       <div id="pattern">
-      <PatternList patterns={this.props.patternList} />
-      <Pattern loops={[{name: 'knit'}, {name: 'purl'}, {name: 'knit'}, {name: 'purl'}]} reverse={this.reverseIt}/>
+      <PatternList patterns={this.props.patternList} zoom={this.choose}/>
+      <Pattern loops={this.props.pattern.pattern.stitches} reverse={this.reverseIt}/>
       </div>
     )
   }
 }
 function mapStateToProps(state) {
-  return { patternList: state.patternList }
+  return { patternList: state.patternList, pattern: state.pattern }
 }
-const connector = connect(mapStateToProps);
+function mapDispatchToProps(dispatch){
+  return { getPattern: ()=>(dispatch(getPattern()))};
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
 const connectedComponent = connector(App);
 
 export default connectedComponent;
