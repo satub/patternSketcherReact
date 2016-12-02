@@ -20,7 +20,6 @@ export default function patternReducer(state = initialState, action) {
       newState.patterns = action.payload.patterns;
       return newState;
     case 'CHOOSE_PATTERN':
-      console.log(action.payload)
       newState = JSON.parse(JSON.stringify(state));
       newState.activePattern.pattern = action.payload.activePattern;
       return newState;

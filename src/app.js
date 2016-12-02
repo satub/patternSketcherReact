@@ -35,9 +35,9 @@ class App extends React.Component {
 
   render(){
     return (
-      <div id="pattern">
-      <PatternList patternList={this.props.pattern} zoom={this.choose}/>
+      <div id="pattern" className="flex flex-wrap col-11 mx-auto p1 border-box clearfix border rounded">
       <Pattern loops={this.props.pattern.activePattern.pattern.stitches} reverse={this.reverseIt}/>
+      <PatternList patternList={this.props.pattern} zoom={this.choose}/>
       </div>
     )
   }
