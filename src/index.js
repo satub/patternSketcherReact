@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import ReduxPromise from 'redux-promise';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './reducers';
 
 import App from './app';
-import configureStore from './stores/configureStore';
 import { getPatternList } from './actions/patternListActions'
 
-const store = configureStore();
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const store = createStoreWithMiddleware(rootReducer);
+
 store.dispatch(getPatternList());
 
 ReactDOM.render(

@@ -1,14 +1,12 @@
 const BASE_URL = 'https://hidden-oasis-19095.herokuapp.com/api/v1/'
 
 export function getPatternList(){
-  // let patterns;
-  fetch(`${BASE_URL}patterns`).then(function(res){
+  let patterns = fetch(`${BASE_URL}patterns`).then(function(res){
     return res.json();
-  }).then(function(json){
-    return {
-      type: 'GET_PATTERN_LIST', payload: json.patterns
-    }
   });
+    return {
+      type: 'GET_PATTERN_LIST', payload: patterns
+    }
 }
 
 

@@ -1,9 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import Pattern from './components/pattern';
 import PatternList from './components/patternList';
 
-export default class App extends React.Component {
+class App extends React.Component {
   constructor(props){
     super(props);
     this.reverseIt = this.reverseIt.bind(this);
@@ -20,9 +21,16 @@ export default class App extends React.Component {
   render(){
     return (
       <div id="pattern">
-      <PatternList patterns={[{name: 'pearl knit'}]} />
+      <PatternList patterns={this.props.patternList} />
       <Pattern loops={[{name: 'knit'}, {name: 'purl'}, {name: 'knit'}, {name: 'purl'}]} reverse={this.reverseIt}/>
       </div>
     )
   }
 }
+function mapStateToProps(state) {
+  return { patternList: state.patternList }
+}
+const connector = connect(mapStateToProps);
+const connectedComponent = connector(App);
+
+export default connectedComponent;
