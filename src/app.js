@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Pattern from './components/pattern';
 import PatternList from './components/patternList';
 
-import { getPattern, choosePattern, resetPattern } from './actions/patternActions';
+import { getPattern, choosePattern, resetPattern , reverseLoop } from './actions/patternActions';
 
 class App extends React.Component {
   constructor(props){
@@ -12,7 +12,7 @@ class App extends React.Component {
     this.reverseIt = this.reverseIt.bind(this);
     this.choose = this.choose.bind(this);
     this.reset = this.reset.bind(this);
-    console.log(props)
+    // console.log(props)
   }
 
   componentWillMount(){
@@ -34,9 +34,13 @@ class App extends React.Component {
   reverseIt(ev){
     ev.preventDefault();
     let that = ev;
-    let loopNumber = that.target.attributes[1].value.split("$")[1];
-    console.log(loopNumber);
+
+    let coordinates = that.target.attributes[1].value.split("$");
+    let x = coordinates[2];
+    let y = coordinates[1].split(".")[0];
+    console.log('x:' + coordinates[2] + ' y:' + coordinates[1]);
     //dispatch an action with this id and reverse the stitch
+    this.props.reverseLoop(x,y,this.props.pattern.activePattern.pattern.stitches);
   }
 
   render(){
@@ -55,7 +59,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch){
   return { getPattern: ()=>(dispatch(getPattern())),
           choosePattern: (all, id)=>(dispatch(choosePattern(all, id))),
-          resetPattern: ()=>(dispatch(resetPattern()))};
+          resetPattern: ()=>(dispatch(resetPattern())),
+          reverseLoop: (x,y,stitches)=>(dispatch(reverseLoop(x,y,stitches)))};
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
