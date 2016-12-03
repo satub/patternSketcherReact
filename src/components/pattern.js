@@ -1,36 +1,30 @@
 import React from 'react';
 
-import Loop from './loop';
+import Row from './row';
 
 export default function Pattern(props){
 
-  // let tabelify = [];
-  // let width = props.pattern.width_loops;
-  // for ( let i = props.pattern.stitches.length-1; i > -1; i--){
-  //   tabelify.push(props.pattern.stitches[i]);
-  // }
+  let tabelify = [];
+  let width = props.pattern.width_loops;
+  let height = props.pattern.height_rows;
+  for (let j = 0; j < height; j++){
+    tabelify[j] = props.pattern.stitches.map(function(stitch){
+        if(stitch.row_number === j){
+          return stitch;
+        }
+      }
+    ).filter(Boolean)
+  }
+
 
   return (
     <div id="stitches" className="col-9 clearfix rounded">
       <h3>Pattern name: {props.pattern.name}</h3>
         <table><tbody>
-          <tr>
-          {props.pattern.stitches.map((loop, i) =>
-            <Loop key={i} name={loop.loop.name} handleReverse={props.reverse}/>)}
-          </tr>
+          {tabelify.map((row, i) =>
+            <Row key={i} row={row} handleReverse={props.reverse}/>)}
         </tbody></table>
     </div>
   )
 
 }
-
-<table border="1">
-<tr>
-<td>Row 1, Column 1</td>
-<td>Row 1, Column 2</td>
-</tr>
-<tr>
-<td>Row 2, Column 1</td>
-<td>Row 2, Column 2</td>
-</tr>
-</table>
