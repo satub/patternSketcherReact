@@ -17,6 +17,10 @@ export function getPattern(){
   return { type: 'GET_PATTERN' }
 }
 
+export function resetPattern(){
+  return { type: 'RESET_PATTERN' }
+}
+
 export function choosePattern(state, patternId){
   return {
     type: 'CHOOSE_PATTERN', payload: { activePattern: state.patterns[patternId] }

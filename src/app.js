@@ -4,18 +4,24 @@ import {connect} from 'react-redux';
 import Pattern from './components/pattern';
 import PatternList from './components/patternList';
 
-import { getPattern, choosePattern } from './actions/patternActions';
+import { getPattern, choosePattern, resetPattern } from './actions/patternActions';
 
 class App extends React.Component {
   constructor(props){
     super(props);
     this.reverseIt = this.reverseIt.bind(this);
     this.choose = this.choose.bind(this);
+    this.reset = this.reset.bind(this);
     console.log(props)
   }
 
   componentWillMount(){
     this.props.getPattern();
+  }
+
+  reset(ev){
+    ev.preventDefault();
+    this.props.resetPattern();
   }
 
   choose(ev){
@@ -36,8 +42,9 @@ class App extends React.Component {
   render(){
     return (
       <div id="pattern" className="flex flex-wrap col-11 mx-auto p1 border-box clearfix border rounded">
-      <Pattern loops={this.props.pattern.activePattern.pattern.stitches} reverse={this.reverseIt}/>
+      <Pattern pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} reverse={this.reverseIt}/>
       <PatternList patternList={this.props.pattern} zoom={this.choose}/>
+      <button onClick={this.reset}>Reset</button>
       </div>
     )
   }
@@ -47,7 +54,8 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch){
   return { getPattern: ()=>(dispatch(getPattern())),
-          choosePattern: (all, id)=>(dispatch(choosePattern(all, id)))};
+          choosePattern: (all, id)=>(dispatch(choosePattern(all, id))),
+          resetPattern: ()=>(dispatch(resetPattern()))};
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
