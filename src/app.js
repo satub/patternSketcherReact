@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Pattern from './components/pattern';
 import PatternList from './components/patternList';
 
-import { getPattern, choosePattern, resetPattern , reverseLoop, changeSize } from './actions/patternActions';
+import { getPattern, choosePattern, resetPattern , reverseLoop, changeSize, reversePattern } from './actions/patternActions';
 
 class App extends React.Component {
   constructor(props){
@@ -13,6 +13,7 @@ class App extends React.Component {
     this.choose = this.choose.bind(this);
     this.reset = this.reset.bind(this);
     this.resize = this.resize.bind(this);
+    this.showReverse = this.showReverse.bind(this);
     // console.log(props)
   }
 
@@ -51,12 +52,18 @@ class App extends React.Component {
     this.props.reverseLoop(x,y,this.props.pattern.activePattern.pattern.stitches);
   }
 
+    showReverse(ev){
+      ev.preventDefault();
+      this.props.reversePattern(this.props.pattern.activePattern.pattern.stitches);
+    }
+
   render(){
     return (
       <div id="pattern" className="flex flex-wrap col-11 mx-auto p1 border-box clearfix border rounded">
       <Pattern pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} reverse={this.reverseIt} handleClick={this.resize} />
       <PatternList patternList={this.props.pattern} zoom={this.choose}/>
       <button onClick={this.reset}>Reset</button>
+      <button onClick={this.showReverse}>showReverse</button>
       </div>
     )
   }
@@ -69,7 +76,8 @@ function mapDispatchToProps(dispatch){
           choosePattern: (all, id)=>(dispatch(choosePattern(all, id))),
           resetPattern: ()=>(dispatch(resetPattern())),
           reverseLoop: (x,y,stitches)=>(dispatch(reverseLoop(x,y,stitches))),
-          changeSize: (pattern, change)=>(dispatch(changeSize(pattern,change)))};
+          changeSize: (pattern, change)=>(dispatch(changeSize(pattern,change))),
+          reversePattern: (pattern)=>(dispatch(reversePattern(pattern)))};
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

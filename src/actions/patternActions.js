@@ -34,6 +34,15 @@ export function reverseLoop(loop, row, oldForm){
   return { type: 'REVERSE_LOOP', payload: stitches}
 }
 
+export function reversePattern(oldForm){
+  let stitches = oldForm.map(function(stitch){
+    let newStitch = stitch;
+    stitch.loop.name === 'knit' ? newStitch.loop = {id: 2, name: 'purl'} : newStitch.loop = {id: 1, name: 'knit'}
+    return newStitch;
+  });
+  return { type: 'REVERSE_PATTERN', payload: stitches}
+}
+
 export function changeSize(currentPattern, change){
   let editedPattern = JSON.parse(JSON.stringify(currentPattern));
   let width = currentPattern.width_loops;
