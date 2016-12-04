@@ -20,6 +20,10 @@ export default function Pattern(props){
   return (
     <div id="stitches" className="col-9 clearfix rounded">
       <h3>Pattern name: {props.pattern.name}</h3>
+      <button id="plusRow" onClick={props.handleClick}>Height +</button>
+      <button id="minusRow" onClick={props.handleClick}>Height -</button>
+      <button id="plusLoop" onClick={props.handleClick}>Width +</button>
+      <button id="minusLoop" onClick={props.handleClick}>Width -</button>
         <table><tbody>
           {tabelify.map((row, i) =>
             <Row key={i} row={row} handleReverse={props.reverse}/>)}
