@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Pattern from './components/pattern';
 import PatternList from './components/patternList';
 
-import { getPattern, choosePattern, resetPattern , reverseLoop, changeSize, reversePattern, savePattern, savePatternAsNew } from './actions/patternActions';
+import { getPattern, choosePattern, resetPattern , reverseLoop, changeSize, reversePattern, savePattern, savePatternAsNew, rename } from './actions/patternActions';
 
 class App extends React.Component {
   constructor(props){
@@ -15,6 +15,7 @@ class App extends React.Component {
     this.resize = this.resize.bind(this);
     this.showReverse = this.showReverse.bind(this);
     this.save = this.save.bind(this);
+    this.handleName = this.handleName.bind(this);
     this.saveAsNew = this.saveAsNew.bind(this);
     // console.log(props)
   }
@@ -67,6 +68,12 @@ class App extends React.Component {
       ev.preventDefault();
       this.props.savePatternAsNew(this.props.pattern.activePattern.pattern);
     }
+    handleName(ev){
+      ev.preventDefault();
+      let that = ev;
+      let newName = that.target.value;
+      this.props.rename(this.props.pattern.activePattern.pattern, newName);
+    }
 
   render(){
     return (
@@ -76,6 +83,8 @@ class App extends React.Component {
       <button onClick={this.reset}>Reset</button>
       <button onClick={this.showReverse}>Show Reverse Side</button>
       <button onClick={this.save}>Save Pattern</button>
+      <label>New Pattern:</label>
+      <input type="text" onChange={this.handleName}/>
       <button onClick={this.saveAsNew}>Save as New</button>
       </div>
     )
@@ -92,7 +101,8 @@ function mapDispatchToProps(dispatch){
           changeSize: (pattern, change)=>(dispatch(changeSize(pattern,change))),
           reversePattern: (pattern)=>(dispatch(reversePattern(pattern))),
           savePattern: (pattern)=>(dispatch(savePattern(pattern))),
-          savePatternAsNew: (pattern)=>(dispatch(savePatternAsNew(pattern)))};
+          savePatternAsNew: (pattern)=>(dispatch(savePatternAsNew(pattern))),
+          rename: (pattern, name)=>(dispatch(rename(pattern, name)))};
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

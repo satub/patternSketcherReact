@@ -39,6 +39,10 @@ export default function patternReducer(state = initialState, action) {
       newState = JSON.parse(JSON.stringify(state));
       newState.activePattern.pattern = action.payload;
       return newState;
+    case 'RENAME_PATTERN':
+      newState = JSON.parse(JSON.stringify(state));
+      newState.activePattern.pattern = action.payload;
+      return newState;
     case 'REVERSE_PATTERN':
       newState = JSON.parse(JSON.stringify(state));
       newState.activePattern.pattern.stitches = action.payload;

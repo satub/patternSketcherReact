@@ -61,6 +61,12 @@ export function resetPattern(){
   return { type: 'RESET_PATTERN' }
 }
 
+export function rename(pattern, name){
+
+  let newPattern = JSON.parse(JSON.stringify(pattern));
+  newPattern.name = name;
+  return { type: 'RENAME_PATTERN', payload: newPattern}
+}
 export function reverseLoop(oldForm,x,y){
   let newForm = JSON.parse(JSON.stringify(oldForm));
   let stitches = newForm.stitches.map(function(stitch){
