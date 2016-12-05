@@ -15,6 +15,14 @@ export default function patternReducer(state = initialState, action) {
   switch(action.type) {
     case 'GET_PATTERN':
       return state;
+    case 'SAVE_PATTERN':
+      newState = JSON.parse(JSON.stringify(state));
+      newState.activePattern = action.payload
+      return newState;
+    case 'SAVE_PATTERN_AS_NEW':
+      newState = JSON.parse(JSON.stringify(state));
+      newState.activePattern = action.payload
+      return newState;
     case 'RESET_PATTERN':
       newState = JSON.parse(JSON.stringify(state));
       newState.activePattern = initialState.activePattern;
@@ -29,7 +37,7 @@ export default function patternReducer(state = initialState, action) {
       return newState;
     case 'REVERSE_LOOP':
       newState = JSON.parse(JSON.stringify(state));
-      newState.activePattern.pattern.stitches = action.payload;
+      newState.activePattern.pattern = action.payload;
       return newState;
     case 'REVERSE_PATTERN':
       newState = JSON.parse(JSON.stringify(state));

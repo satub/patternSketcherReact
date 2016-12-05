@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Pattern from './components/pattern';
 import PatternList from './components/patternList';
 
-import { getPattern, choosePattern, resetPattern , reverseLoop, changeSize, reversePattern } from './actions/patternActions';
+import { getPattern, choosePattern, resetPattern , reverseLoop, changeSize, reversePattern, savePattern, savePatternAsNew } from './actions/patternActions';
 
 class App extends React.Component {
   constructor(props){
@@ -14,11 +14,18 @@ class App extends React.Component {
     this.reset = this.reset.bind(this);
     this.resize = this.resize.bind(this);
     this.showReverse = this.showReverse.bind(this);
+    this.save = this.save.bind(this);
+    this.saveAsNew = this.saveAsNew.bind(this);
     // console.log(props)
   }
 
   componentWillMount(){
     this.props.getPattern();
+  }
+  componentDidUpdate(prevProps, prevState){
+    if (prevProps.pattern !== this.props.pattern) {
+      this.props.getPattern();
+    }
   }
 
   reset(ev){
@@ -47,9 +54,9 @@ class App extends React.Component {
     let coordinates = that.target.attributes[1].value.split("$");
     let x = coordinates[2];
     let y = coordinates[1].split(".")[0];
-    console.log('x:' + coordinates[2] + ' y:' + coordinates[1]);
-    //dispatch an action with this id and reverse the stitch
-    this.props.reverseLoop(x,y,this.props.pattern.activePattern.pattern.stitches);
+    // console.log('x:' + coordinates[2] + ' y:' + coordinates[1]);
+
+    this.props.reverseLoop(this.props.pattern.activePattern.pattern,x,y);
   }
 
     showReverse(ev){
@@ -57,13 +64,25 @@ class App extends React.Component {
       this.props.reversePattern(this.props.pattern.activePattern.pattern.stitches);
     }
 
+    save(ev){
+      ev.preventDefault();
+      debugger;
+      this.props.savePattern(this.props.pattern.activePattern.pattern);
+    }
+    saveAsNew(ev){
+      ev.preventDefault();
+      this.props.savePatternAsNew(this.props.pattern.activePattern);
+    }
+
   render(){
     return (
       <div id="pattern" className="flex flex-wrap col-11 mx-auto p1 border-box clearfix border rounded">
-      <Pattern pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} reverse={this.reverseIt} handleClick={this.resize} />
+      <Pattern pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} handleLoop={this.reverseIt} handleClick={this.resize} />
       <PatternList patternList={this.props.pattern} zoom={this.choose}/>
       <button onClick={this.reset}>Reset</button>
-      <button onClick={this.showReverse}>showReverse</button>
+      <button onClick={this.showReverse}>Show Reverse Side</button>
+      <button onClick={this.save}>Save Pattern</button>
+      <button onClick={this.saveAsNew}>Save as New</button>
       </div>
     )
   }
@@ -75,9 +94,11 @@ function mapDispatchToProps(dispatch){
   return { getPattern: ()=>(dispatch(getPattern())),
           choosePattern: (all, id)=>(dispatch(choosePattern(all, id))),
           resetPattern: ()=>(dispatch(resetPattern())),
-          reverseLoop: (x,y,stitches)=>(dispatch(reverseLoop(x,y,stitches))),
+          reverseLoop: (stitches,x,y)=>(dispatch(reverseLoop(stitches,x,y))),
           changeSize: (pattern, change)=>(dispatch(changeSize(pattern,change))),
-          reversePattern: (pattern)=>(dispatch(reversePattern(pattern)))};
+          reversePattern: (pattern)=>(dispatch(reversePattern(pattern))),
+          savePattern: (pattern)=>(dispatch(savePattern(pattern))),
+          savePatternAsNew: (pattern)=>(dispatch(savePatternAsNew(pattern)))};
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

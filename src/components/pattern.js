@@ -26,7 +26,7 @@ export default function Pattern(props){
       <button id="minusLoop" onClick={props.handleClick}>Width -</button>
         <table><tbody>
           {tabelify.map((row, i) =>
-            <Row key={i} row={row} handleReverse={props.reverse}/>)}
+            <Row key={i} row={row} handleLoop={props.handleLoop}/>)}
         </tbody></table>
     </div>
   )
