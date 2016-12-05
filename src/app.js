@@ -22,11 +22,6 @@ class App extends React.Component {
   componentWillMount(){
     this.props.getPattern();
   }
-  componentDidUpdate(prevProps, prevState){
-    if (prevProps.pattern !== this.props.pattern) {
-      this.props.getPattern();
-    }
-  }
 
   reset(ev){
     ev.preventDefault();
@@ -66,12 +61,11 @@ class App extends React.Component {
 
     save(ev){
       ev.preventDefault();
-      debugger;
       this.props.savePattern(this.props.pattern.activePattern.pattern);
     }
     saveAsNew(ev){
       ev.preventDefault();
-      this.props.savePatternAsNew(this.props.pattern.activePattern);
+      this.props.savePatternAsNew(this.props.pattern.activePattern.pattern);
     }
 
   render(){
