@@ -16,6 +16,8 @@ button {
 .flex, #container {
   border: 1px solid #905060;
 }
+
+/* Table styling, removing all space between the images presented in each table cell */
 table {
     border-collapse: collapse;
 }
@@ -27,6 +29,8 @@ tr, td {
     margin: 0;
     border: none;
 }
+
+
 div {
   background-color: #ffddee;
   opacity: 0.9;
