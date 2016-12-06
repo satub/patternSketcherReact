@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700&subset=latin-ext');
+
+body {
+  font-family: 'Amatic SC';
+  font-weight: bold;
+  font-size: 1.25em;
+}
+
+button {
+  -webkit-appearance: none;
+  font-family: 'Amatic SC';
+  font-weight: bold;
+  font-size: 1em;
+}

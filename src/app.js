@@ -17,7 +17,6 @@ class App extends React.Component {
     this.save = this.save.bind(this);
     this.handleName = this.handleName.bind(this);
     this.saveAsNew = this.saveAsNew.bind(this);
-    // console.log(props)
   }
 
   componentWillMount(){
@@ -50,7 +49,6 @@ class App extends React.Component {
     let coordinates = that.target.attributes[1].value.split("$");
     let x = coordinates[2];
     let y = coordinates[1].split(".")[0];
-    // console.log('x:' + coordinates[2] + ' y:' + coordinates[1]);
 
     this.props.reverseLoop(this.props.pattern.activePattern.pattern,x,y);
   }
