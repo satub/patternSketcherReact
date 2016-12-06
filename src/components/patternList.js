@@ -6,7 +6,7 @@ export default function PatternList(props){
       <h3>Available Patterns:</h3>
       <ul>
         {props.patternList.patterns.map((pattern, i) =>
-        <li key={i} onClick={props.zoom}>{pattern.name}</li>)}
+        <li key={i} onClick={props.zoom}>{pattern.id}. {pattern.name}</li>)}
       </ul>
     </div>
   )
