@@ -19,6 +19,7 @@ class App extends React.Component {
     this.save = this.save.bind(this);
     this.handleName = this.handleName.bind(this);
     this.saveAsNew = this.saveAsNew.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
 
   componentWillMount(){
@@ -74,13 +75,17 @@ class App extends React.Component {
       let newName = that.target.value;
       this.props.rename(this.props.pattern.activePattern.pattern, newName);
     }
+    signIn(ev){
+      ev.preventDefault();
+      debugger;
+    }
 
   render(){
     return (
           <div id="pattern" className="flex flex-wrap col-11 mx-auto p1 border-box clearfix border rounded">
-            <Pattern showMe={"not"} pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} handleLoop={this.reverseIt} handleClick={this.resize} reset={this.reset} showReverse={this.showReverse} save={this.save} handleName={this.handleName} saveAsNew={this.saveAsNew}/>
+            <Pattern showMe={"yes"} pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} handleLoop={this.reverseIt} handleClick={this.resize} reset={this.reset} showReverse={this.showReverse} save={this.save} handleName={this.handleName} saveAsNew={this.saveAsNew}/>
             <PatternList patternList={this.props.pattern} zoom={this.choose}/>
-            <Login showMe={"yes"}/>
+            <Login showMe={"not"} onSubmit={this.signIn}/>
           </div>
 
     )
