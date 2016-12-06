@@ -20,6 +20,13 @@ export default function Pattern(props){
   return (
     <div id="stitches" className="col-9 clearfix rounded">
       <h3>Pattern name: {props.pattern.name}</h3>
+      <div id="newName" class="flex">
+        <label>New Name: </label>
+        <input type="text" onChange={props.handleName}/>
+      </div>
+      <div id="patternButtons2" className="flex">
+        <button onClick={props.saveAsNew}>  Rename and Save as New  </button>
+      </div>
       <div id="stitchButtons" className="flex">
         <button id="plusRow" onClick={props.handleClick}>Height +</button>
         <button id="minusRow" onClick={props.handleClick}>Height -</button>
@@ -32,13 +39,11 @@ export default function Pattern(props){
             <Row key={i} row={row} handleLoop={props.handleLoop}/>)}
         </tbody></table>
       </div>
-      <div id="patternButtons" className="flex">
+      <div id="patternButtons1" className="flex">
         <button onClick={props.reset}>Reset</button>
-        <button onClick={props.showReverse}>Show Reverse Side</button>
-        <button onClick={props.save}>Save Pattern</button>
-        <label>New Pattern:</label>
-        <input type="text" onChange={props.handleName}/>
-        <button onClick={props.saveAsNew}>Save as New</button>
+        <button onClick={props.showReverse}>Show Reverse</button>
+        <button onClick={props.save}>Save</button>
+
       </div>
     </div>
   )

@@ -40,7 +40,14 @@ div #pattern {
   opacity: 1;
 }
 
-#stitchButtons, #stitchTable {
+#stitchButtons, #stitchTable, #patternButtons1 {
   align-items: center;
   justify-content: center;
+  border: none;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+#patternButtons2, #newName {
+    border: none;
 }
