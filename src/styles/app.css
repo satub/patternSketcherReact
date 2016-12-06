@@ -1,14 +1,46 @@
-@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Calligraffitti');
 
 body {
-  font-family: 'Amatic SC';
+  background-image: url("../images/knittingDetail.png");
+  font-family: 'Calligraffitti', cursive;
   font-weight: bold;
   font-size: 1.25em;
 }
 
 button {
   -webkit-appearance: none;
-  font-family: 'Amatic SC';
+  font-family: 'Calligraffitti', cursive;
   font-weight: bold;
   font-size: 1em;
+}
+.flex, #container {
+  border: 1px solid #905060;
+}
+table {
+    border-collapse: collapse;
+}
+img {
+  display: block;
+}
+tr, td {
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+div {
+  background-color: #ffddee;
+  opacity: 0.9;
+}
+div #main {
+  background-color: #ffddff;
+  opacity: 1;
+}
+div #pattern {
+  background-color: #ffeeff;
+  opacity: 1;
+}
+
+#stitchButtons, #stitchTable {
+  align-items: center;
+  justify-content: center;
 }

@@ -20,14 +20,26 @@ export default function Pattern(props){
   return (
     <div id="stitches" className="col-9 clearfix rounded">
       <h3>Pattern name: {props.pattern.name}</h3>
-      <button id="plusRow" onClick={props.handleClick}>Height +</button>
-      <button id="minusRow" onClick={props.handleClick}>Height -</button>
-      <button id="plusLoop" onClick={props.handleClick}>Width +</button>
-      <button id="minusLoop" onClick={props.handleClick}>Width -</button>
+      <div id="stitchButtons" className="flex">
+        <button id="plusRow" onClick={props.handleClick}>Height +</button>
+        <button id="minusRow" onClick={props.handleClick}>Height -</button>
+        <button id="plusLoop" onClick={props.handleClick}>Width +</button>
+        <button id="minusLoop" onClick={props.handleClick}>Width -</button>
+      </div>
+      <div id="stitchTable" className ="flex">
         <table><tbody>
           {tabelify.map((row, i) =>
             <Row key={i} row={row} handleLoop={props.handleLoop}/>)}
         </tbody></table>
+      </div>
+      <div id="patternButtons" className="flex">
+        <button onClick={props.reset}>Reset</button>
+        <button onClick={props.showReverse}>Show Reverse Side</button>
+        <button onClick={props.save}>Save Pattern</button>
+        <label>New Pattern:</label>
+        <input type="text" onChange={props.handleName}/>
+        <button onClick={props.saveAsNew}>Save as New</button>
+      </div>
     </div>
   )
 

@@ -1,3 +1,6 @@
+// import fetch is needed for Safari
+import 'whatwg-fetch';
+
 const BASE_URL = 'https://hidden-oasis-19095.herokuapp.com/api/v1/'
 const defaultLoop = {id: 1, name: 'knit'};
 const TEST_URL2 = 'http://localhost:3000/api/v1/'
