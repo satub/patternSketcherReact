@@ -17,11 +17,12 @@ export default function patternReducer(state = initialState, action) {
       return state;
     case 'SAVE_PATTERN':
       newState = JSON.parse(JSON.stringify(state));
-      newState.activePattern = action.payload
+      newState.activePattern = action.payload;
       return newState;
     case 'SAVE_PATTERN_AS_NEW':
       newState = JSON.parse(JSON.stringify(state));
-      newState.activePattern = action.payload
+      newState.activePattern = action.payload;
+      newState.patterns.push(action.payload.pattern);
       return newState;
     case 'RESET_PATTERN':
       newState = JSON.parse(JSON.stringify(state));
