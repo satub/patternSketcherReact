@@ -16,11 +16,15 @@ export default function Pattern(props){
     ).filter(Boolean)
   }
 
+  let display;
+  if (props.showMe === "not"){
+    display = "none";
+  }
 
   return (
-    <div id="stitches" className="col-9 clearfix rounded">
+    <div id="stitches" className="col-9 clearfix rounded" style={{display}}>
       <h3>Pattern name: {props.pattern.name}</h3>
-      <div id="newName" class="flex">
+      <div id="newName" className="flex">
         <label>New Name: </label>
         <input type="text" onChange={props.handleName}/>
       </div>
@@ -43,7 +47,6 @@ export default function Pattern(props){
         <button onClick={props.reset}>Reset</button>
         <button onClick={props.showReverse}>Show Reverse</button>
         <button onClick={props.save}>Save</button>
-
       </div>
     </div>
   )

@@ -7,7 +7,7 @@ body {
   font-size: 1.25em;
 }
 
-button {
+button, input {
   -webkit-appearance: none;
   font-family: 'Calligraffitti', cursive;
   font-weight: bold;

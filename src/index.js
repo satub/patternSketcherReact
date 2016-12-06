@@ -11,6 +11,7 @@ import { getPatternList } from './actions/patternActions'
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
+
 store.dispatch(getPatternList());
 
 ReactDOM.render(
