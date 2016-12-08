@@ -17,7 +17,7 @@ export default function Pattern(props){
   }
 
   let display;
-  if (props.showMe === "not"){
+  if (!props.showMe){
     display = "none";
   }
 

@@ -7,6 +7,7 @@ import PatternList from './components/patternList';
 import Login from './user/login';
 
 import { getPattern, choosePattern, resetPattern , reverseLoop, changeSize, reversePattern, savePattern, savePatternAsNew, rename } from './actions/patternActions';
+import { logIn } from './actions/userActions';
 
 class App extends React.Component {
   constructor(props){
@@ -77,22 +78,24 @@ class App extends React.Component {
     }
     signIn(ev){
       ev.preventDefault();
-      debugger;
+      let un = ev.target.userName.value;
+      let pw = ev.target.passWord.value;
+      this.props.logIn(un, pw);
     }
 
   render(){
     return (
           <div id="pattern" className="flex flex-wrap col-11 mx-auto p1 border-box clearfix border rounded">
-            <Pattern showMe={"yes"} pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} handleLoop={this.reverseIt} handleClick={this.resize} reset={this.reset} showReverse={this.showReverse} save={this.save} handleName={this.handleName} saveAsNew={this.saveAsNew}/>
+            <Pattern showMe={this.props.user.loggedIn} pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} handleLoop={this.reverseIt} handleClick={this.resize} reset={this.reset} showReverse={this.showReverse} save={this.save} handleName={this.handleName} saveAsNew={this.saveAsNew}/>
             <PatternList patternList={this.props.pattern} zoom={this.choose}/>
-            <Login showMe={"not"} onSubmit={this.signIn}/>
+            <Login showMe={this.props.user.loggedIn} message={this.props.user.msg} onSubmit={this.signIn}/>
           </div>
 
     )
   }
 }
 function mapStateToProps(state) {
-  return { pattern: state.pattern }
+  return { pattern: state.pattern, user: state.user }
 }
 function mapDispatchToProps(dispatch){
   return { getPattern: ()=>(dispatch(getPattern())),
@@ -103,7 +106,8 @@ function mapDispatchToProps(dispatch){
           reversePattern: (pattern)=>(dispatch(reversePattern(pattern))),
           savePattern: (pattern)=>(dispatch(savePattern(pattern))),
           savePatternAsNew: (pattern)=>(dispatch(savePatternAsNew(pattern))),
-          rename: (pattern, name)=>(dispatch(rename(pattern, name)))};
+          rename: (pattern, name)=>(dispatch(rename(pattern, name))),
+          logIn: (userName, pass)=>(dispatch(logIn(userName, pass)))};
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);

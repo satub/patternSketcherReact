@@ -2,17 +2,17 @@ import React from 'react';
 
 export default function Login(props){
   let display;
-  if (props.showMe === "not"){
+  if (props.showMe){
     display = "none";
   }
   return (
     <div id="loginForm" className="col-9 clearfix rounded" style={{display}}>
-      I am a defunct login form!! MWHAHAHA!!!
+      {props.message}
       <form id="login" onSubmit={props.onSubmit}>
         <label>Username: </label>
-        <input type="text" />
+        <input type="text" id="userName"/>
         <label>Password: </label>
-        <input type="password" />
+        <input type="password" id="passWord"/>
         <input type="submit" />
       </form>
     </div>
