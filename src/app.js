@@ -23,6 +23,7 @@ class App extends React.Component {
     this.props.getPattern();
   }
 
+
   reset(ev){
     ev.preventDefault();
     this.props.resetPattern();

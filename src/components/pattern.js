@@ -9,7 +9,7 @@ export default function Pattern(props){
   let height = props.pattern.height_rows;
   for (let j = 0; j < height; j++){
     tabelify[j] = props.pattern.stitches.map(function(stitch){
-        if(stitch.row_number === j){
+        if(stitch.row_number === j && stitch.loop_number < width){
           return stitch;
         }
       }
