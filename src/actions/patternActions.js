@@ -1,13 +1,12 @@
 // import fetch is needed for Safari
 import 'whatwg-fetch';
 
-const BASE_URL = 'https://hidden-oasis-19095.herokuapp.com/api/v1/'
+const BASE_URL = 'https://hidden-oasis-19095.herokuapp.com/api/v1/';
 const defaultLoop = {id: 1, name: 'knit'};
-const TEST_URL2 = 'http://localhost:3000/api/v1/'
-const TEST_URL = 'http://localhost:3000/api/v1/patterns/'
+const TEST_URL = 'http://localhost:3000/api/v1/';
 
 export function getPatternList(){
-  let patterns = fetch(`${BASE_URL}patterns`).then(function(res){
+  let patterns = fetch(`${TEST_URL}patterns`).then(function(res){
     return res.json();
   });
     return {
@@ -15,24 +14,29 @@ export function getPatternList(){
     }
 }
 
-export function savePattern(pattern){
-  // debugger;
+export function savePattern(pattern, user){
+  let token = user.token.jwt;
   let data = {pattern: pattern};
   if(pattern.id){
-    fetch(`${BASE_URL}patterns/${pattern.id}`,
+    fetch(`${TEST_URL}patterns/${pattern.id}`,
       {method: 'PUT',
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer' + token },
       body: JSON.stringify(data)});
     } else {
-      fetch(`${BASE_URL}patterns`,
+      fetch(`${TEST_URL}patterns`,
         {method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer' + token },
         body: JSON.stringify(data)});
     }
   return { type: 'SAVE_PATTERN', payload: {pattern: pattern} }
 }
 
-export function savePatternAsNew(pattern){
+export function savePatternAsNew(pattern, user){
+  let token = user.token.jwt;
   let patternAsNew = JSON.parse(JSON.stringify(pattern));
   patternAsNew.id = "";
   let stitches = patternAsNew.stitches.map(function(stitch){
@@ -43,9 +47,11 @@ export function savePatternAsNew(pattern){
     patternAsNew.stitches = stitches;
 
   let data = {pattern: patternAsNew};
-  fetch(`${BASE_URL}patterns`,
+  fetch(`${TEST_URL}patterns`,
     {method: 'POST',
-    headers: {'Content-Type': 'application/json'},
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer' + token },
     body: JSON.stringify(data)});
 
   return { type: 'SAVE_PATTERN_AS_NEW', payload: {pattern: pattern} }

@@ -64,11 +64,11 @@ class App extends React.Component {
 
     save(ev){
       ev.preventDefault();
-      this.props.savePattern(this.props.pattern.activePattern.pattern);
+      this.props.savePattern(this.props.pattern.activePattern.pattern, this.props.user);
     }
     saveAsNew(ev){
       ev.preventDefault();
-      this.props.savePatternAsNew(this.props.pattern.activePattern.pattern);
+      this.props.savePatternAsNew(this.props.pattern.activePattern.pattern, this.props.user);
     }
     handleName(ev){
       ev.preventDefault();
@@ -104,8 +104,8 @@ function mapDispatchToProps(dispatch){
           reverseLoop: (stitches,x,y)=>(dispatch(reverseLoop(stitches,x,y))),
           changeSize: (pattern, change)=>(dispatch(changeSize(pattern,change))),
           reversePattern: (pattern)=>(dispatch(reversePattern(pattern))),
-          savePattern: (pattern)=>(dispatch(savePattern(pattern))),
-          savePatternAsNew: (pattern)=>(dispatch(savePatternAsNew(pattern))),
+          savePattern: (pattern, user)=>(dispatch(savePattern(pattern, user))),
+          savePatternAsNew: (pattern, user)=>(dispatch(savePatternAsNew(pattern, user))),
           rename: (pattern, name)=>(dispatch(rename(pattern, name))),
           logIn: (userName, pass)=>(dispatch(logIn(userName, pass)))};
 }
