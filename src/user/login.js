@@ -15,6 +15,16 @@ export default function Login(props){
         <input type="password" id="passWord"/>
         <input type="submit" />
       </form>
+      Not signed up yet? Just fill in the form!
+      <form id="submit" onSubmit={props.onSubmit}>
+        <label>Username: </label>
+        <input type="text" id="newUser"/>
+        <label>Password: </label>
+        <input type="password" id="newPass"/>
+        <label>Confirm password: </label>
+        <input type="password" id="newPassConf"/>
+        <input type="submit" />
+      </form>
     </div>
   )
 }
