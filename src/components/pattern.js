@@ -18,7 +18,7 @@ export default function Pattern(props){
 
 
   return (
-    <div id="stitches" className="col-9 clearfix rounded">
+    <div id="stitches" className="col-8 clearfix rounded">
       <h3>Pattern name: {props.pattern.name}</h3>
       <div id="newName" className="flex">
         <label>New Name: </label>

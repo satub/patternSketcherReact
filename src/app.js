@@ -75,7 +75,7 @@ class App extends React.Component {
 
   render(){
     return (
-      <div id="pattern" className="flex flex-wrap col-11 mx-auto p1 border-box clearfix border rounded">
+      <div id="pattern" className="flex flex-wrap col-12 mx-auto p1 border-box clearfix border rounded">
       <Pattern pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} handleLoop={this.reverseIt} handleClick={this.resize} reset={this.reset} showReverse={this.showReverse} save={this.save} handleName={this.handleName} saveAsNew={this.saveAsNew}/>
       <PatternList patternList={this.props.pattern} zoom={this.choose}/>
       </div>

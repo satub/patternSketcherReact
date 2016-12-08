@@ -5,7 +5,7 @@ export default function PatternList(props){
   if (props.patternList.patterns.length >= 1){
     display = "none";
   }
-  
+
   return(
     <div id="patternList" className="col-3 clearfix rounded">
       <h3>Available Patterns:</h3>
@@ -13,10 +13,12 @@ export default function PatternList(props){
         <p>Loading...</p>
         <img src={'../src/images/catKnitting.png'} />
       </div>
-      <ul>
-        {props.patternList.patterns.map((pattern, i) =>
-        <li key={i} onClick={props.zoom} data={i}>{pattern.name}</li>)}
-      </ul>
+      <div id="listWrapper">
+        <ul>
+          {props.patternList.patterns.map((pattern, i) =>
+          <li key={i} onClick={props.zoom} data={i}>{pattern.name}</li>)}
+        </ul>
+      </div>
     </div>
   )
 }

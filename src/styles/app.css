@@ -27,6 +27,18 @@ tr, td {
     margin: 0;
     border: none;
 }
+* {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box;
+  }
+
+/*#listWrapper {
+  display: -moz-inline-stack;
+  display: -webkit-inline-stack;
+  display: inline-block;
+}*/
+
 div {
   background-color: #ffddee;
   opacity: 0.9;
@@ -39,7 +51,9 @@ div #pattern {
   background-color: #ffeeff;
   opacity: 1;
 }
-
+#pattern {
+  justify-content: center;
+}
 #stitchButtons, #stitchTable, #patternButtons1 {
   align-items: center;
   justify-content: center;
