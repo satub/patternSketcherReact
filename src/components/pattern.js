@@ -20,7 +20,7 @@ export default function Pattern(props){
   return (
     <div id="stitches" className="col-9 clearfix rounded">
       <h3>Pattern name: {props.pattern.name}</h3>
-      <div id="newName" class="flex">
+      <div id="newName" className="flex">
         <label>New Name: </label>
         <input type="text" onChange={props.handleName}/>
       </div>
