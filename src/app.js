@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Pattern from './components/pattern';
 import PatternList from './components/patternList';
 
-import { getPatternList, getPattern, choosePattern, resetPattern , reverseLoop, changeSize, reversePattern, savePattern, savePatternAsNew, rename } from './actions/patternActions';
+import { getPattern, choosePattern, resetPattern , reverseLoop, changeSize, reversePattern, savePattern, savePatternAsNew, rename } from './actions/patternActions';
 
 class App extends React.Component {
   constructor(props){
@@ -86,7 +86,6 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch){
   return { getPattern: ()=>(dispatch(getPattern())),
-          getPatternList: ()=>(dispatch(getPatternList())),
           choosePattern: (all, id)=>(dispatch(choosePattern(all, id))),
           resetPattern: ()=>(dispatch(resetPattern())),
           reverseLoop: (stitches,x,y)=>(dispatch(reverseLoop(stitches,x,y))),
