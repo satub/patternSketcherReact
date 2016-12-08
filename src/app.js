@@ -7,7 +7,7 @@ import PatternList from './components/patternList';
 import Login from './user/login';
 
 import { getPattern, choosePattern, resetPattern , reverseLoop, changeSize, reversePattern, savePattern, savePatternAsNew, rename } from './actions/patternActions';
-import { logIn } from './actions/userActions';
+import { logIn, signUp } from './actions/userActions';
 
 class App extends React.Component {
   constructor(props){
@@ -78,10 +78,12 @@ class App extends React.Component {
     }
     signIn(ev){
       ev.preventDefault();
+      //read all the form values in here and decide if this a login or singup action...
       let un = ev.target.userName.value;
       let pw = ev.target.passWord.value;
       this.props.logIn(un, pw);
     }
+
 
   render(){
     return (
@@ -89,7 +91,7 @@ class App extends React.Component {
             <Pattern showMe={this.props.user.loggedIn} pattern={this.props.pattern.activePattern.pattern} loops={this.props.pattern.activePattern.pattern.stitches} handleLoop={this.reverseIt} handleClick={this.resize} reset={this.reset} showReverse={this.showReverse} save={this.save} handleName={this.handleName} saveAsNew={this.saveAsNew}/>
             <PatternList patternList={this.props.pattern} zoom={this.choose}/>
             <Login showMe={this.props.user.loggedIn} message={this.props.user.msg} onSubmit={this.signIn}/>
-          </div>
+        </div>
 
     )
   }
@@ -107,7 +109,8 @@ function mapDispatchToProps(dispatch){
           savePattern: (pattern, user)=>(dispatch(savePattern(pattern, user))),
           savePatternAsNew: (pattern, user)=>(dispatch(savePatternAsNew(pattern, user))),
           rename: (pattern, name)=>(dispatch(rename(pattern, name))),
-          logIn: (userName, pass)=>(dispatch(logIn(userName, pass)))};
+          logIn: (userName, pass)=>(dispatch(logIn(userName, pass))),
+          signUp: (userName,pass,passConf)=>(dispatch(signUp(userName,pass,passConf)))};
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
