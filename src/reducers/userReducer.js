@@ -11,12 +11,12 @@ export default function userReducer(state=initialState, action){
       }
       return newState;
     case 'SIGN_UP_FOR_TOKENZ':
+      // debugger;
       if (action.payload.jwt){
-        newState = { token: action.payload, loggedIn: true, msg: 'Successfully signed up' }
+        newState = { token: action.payload, loggedIn: true,  msg: 'Successfully logged in' }
       } else {
         newState = { token: null, loggedIn: false, msg: 'Signup failed. Make sure to confirm your password.' }
       }
-      debugger;
       return newState;
     default:
     return state;

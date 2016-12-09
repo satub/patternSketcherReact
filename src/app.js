@@ -76,12 +76,22 @@ class App extends React.Component {
       let newName = that.target.value;
       this.props.rename(this.props.pattern.activePattern.pattern, newName);
     }
+
     signIn(ev){
       ev.preventDefault();
-      //read all the form values in here and decide if this a login or singup action...
-      let un = ev.target.userName.value;
-      let pw = ev.target.passWord.value;
-      this.props.logIn(un, pw);
+      let user;
+      let pw;
+      let pwConf;
+      if(ev.target.id === "signup"){
+        user = ev.target.newUser.value;
+        pw = ev.target.newPass.value;
+        pwConf = ev.target.newPassConf.value;
+        this.props.signUp(user, pw, pwConf);
+      } else if (ev.target.id === "login") {
+        user = ev.target.userName.value;
+        pw = ev.target.passWord.value;
+        this.props.logIn(user, pw);
+      }
     }
 
 
