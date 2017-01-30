@@ -11,39 +11,37 @@ const initialState = { patterns: [],
   }
 }
 export default function patternReducer(state = initialState, action) {
-  let newState = JSON.parse(JSON.stringify(state));
-  switch(action.type) {
-    case 'GET_PATTERN':
-      return state;
-    case 'SAVE_PATTERN':
-      newState.activePattern = action.payload;
-      return newState;
-    case 'SAVE_PATTERN_AS_NEW':
-      newState.activePattern = action.payload;
-      newState.patterns.push(action.payload.pattern);
-      return newState;
-    case 'RESET_PATTERN':
-      newState.activePattern = initialState.activePattern;
-      return newState;
-    case 'GET_PATTERN_LIST':
-      newState.patterns = action.payload.patterns;
-      return newState;
-    case 'CHOOSE_PATTERN':
-      newState.activePattern.pattern = action.payload.activePattern;
-      return newState;
-    case 'REVERSE_LOOP':
-      newState.activePattern.pattern = action.payload;
-      return newState;
-    case 'RENAME_PATTERN':
-      newState.activePattern.pattern = action.payload;
-      return newState;
-    case 'REVERSE_PATTERN':
-      newState.activePattern.pattern.stitches = action.payload;
-      return newState;
-    case 'CHANGE_SIZE':
-      newState.activePattern.pattern = action.payload;
-      return newState;
-    default:
-      return state;
-  }
+    let newActivePattern;
+    let newPattern;
+    switch(action.type) {
+        case 'GET_PATTERN':
+            return state;
+        case 'SAVE_PATTERN':
+            return { ...state, activePattern: action.payload };
+        case 'SAVE_PATTERN_AS_NEW':
+            newPatternList = [...state.patterns, action.payload.pattern];
+            return { ...state, patterns: newPatternList, activePattern: action.payload };
+        case 'RESET_PATTERN':
+            return { ...state, activePattern: initialState.activePattern };
+        case 'GET_PATTERN_LIST':
+            return { ...state, patterns: action.payload.patterns };
+        case 'CHOOSE_PATTERN':
+            newActivePattern = { ...state.activePattern, pattern: action.payload.activePattern };
+            return { ...state, activePattern: newActivePattern };
+        case 'REVERSE_LOOP':
+            newActivePattern = { ...state.activePattern, pattern: action.payload };
+            return { ...state, activePattern: newActivePattern };
+        case 'RENAME_PATTERN':
+            newActivePattern = { ...state.activePattern, pattern: action.payload };
+            return { ...state, activePattern: newActivePattern };
+        case 'REVERSE_PATTERN':
+            newPattern = { ...state.activePattern.pattern, stitches: action.payload };
+            newActivePattern = { ...state.activePattern, pattern: newPattern };
+            return { ...state, activePattern: newActivePattern };
+        case 'CHANGE_SIZE':
+            newActivePattern = { ...state.activePattern, pattern: action.payload };
+            return { ...state, activePattern: newActivePattern };
+        default:
+            return state;
+      }
 }
